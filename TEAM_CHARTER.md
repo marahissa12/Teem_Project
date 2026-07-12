@@ -19,7 +19,7 @@ To maintain a clean and searchable history, all commits must follow the **Conven
 * **feat:** New feature addition.
 * **fix:** Bug correction.
 * **docs:** Changes to documentation.
-* **style:** Formatting, missing semi-colons, whitespace (no code change).
+* **style:** Formatting, missing semicolons, whitespace (no code change).
 * **refactor:** Restructuring code without changing behavior.
 * **test:** Adding or updating tests.
 * **chore:** Build process or auxiliary tool changes.
@@ -58,3 +58,31 @@ All code must follow the standard Kotlin naming conventions:
 
 ---
 *Maintained by: Clean Standards Member*
+
+# Team Charter & Communication Protocols
+
+## 1. Objective
+This document outlines the communication standards, internal protocols, and Service Level Agreements (SLAs) for the team to ensure project success, efficiency, and full alignment with IEEE standards.
+
+## 2. Communication Channels
+To maintain clarity and efficiency, the following channels are established:
+* **Official Discussions & Documentation:** GitHub/GitLab (Issues & Pull Requests).
+* **Daily Syncs & Urgent Queries:** Team WhatsApp Group/Slack.
+* **Meetings:** Zoom/Microsoft Teams.
+
+## 3. Communication SLA
+* **Urgent Messages:** Response required within 2 hours.
+* **General Inquiries:** Response required within 24 hours.
+* **Core Hours:** Team members are expected to be reachable between [Insert your core hours, e.g., 10:00 AM - 2:00 PM].
+
+## 4. Code Review & SLA Boundaries
+To ensure code quality and adhere to IEEE engineering standards:
+* **Pull Request Review:** All code submissions must be reviewed by at least one team member within **24 hours** of submission.
+* **Feedback Integration:** Requested changes must be addressed by the author within **48 hours**.
+* **Escalation Path:** If an SLA boundary is breached, the issue must be escalated to the Project Lead to prevent project bottlenecks.
+
+## 5. Peer Review Checklist (IEEE Standards)
+Every peer review must verify the following:
+1. **Code Structure:** Indentation and naming conventions adhere to IEEE styles.
+2. **Documentation:** Javadoc/Comments are present for all complex functions.
+3. **Functionality:** The code complies with the project's functional requirements.
