@@ -25,19 +25,22 @@ private fun shouldComeBefore(first: Package, second: Package): Boolean {
 }
 
 fun selectionSortPackages(packages: MutableList<Package>) {
-    for (i in 0 until packages.size - 1) {
-        var bestPackageIndex = i
 
-        for (j in i + 1 until packages.size) {
-            if (shouldComeBefore(packages[j], packages[bestPackageIndex])) {
-                bestPackageIndex = j
+    for (currentIndex in 0 until packages.size - 1) {
+
+        var selectedIndex = currentIndex
+
+        for (candidateIndex in currentIndex + 1 until packages.size) {
+
+            if (shouldComeBefore(packages[candidateIndex], packages[selectedIndex])) {
+                selectedIndex = candidateIndex
             }
         }
 
-        if (bestPackageIndex != i) {
-            val tempPackage = packages[i]
-            packages[i] = packages[bestPackageIndex]
-            packages[bestPackageIndex] = tempPackage
+        if (selectedIndex != currentIndex) {
+            val temp = packages[currentIndex]
+            packages[currentIndex] = packages[selectedIndex]
+            packages[selectedIndex] = temp
         }
     }
 }
