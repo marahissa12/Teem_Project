@@ -1,4 +1,4 @@
-package org.bytebloom
+package org.bytebloom.dataHolder
 
 data class packageRow(
     val id: String,

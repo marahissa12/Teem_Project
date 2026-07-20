@@ -1,4 +1,7 @@
-package org.bytebloom
+package org.bytebloom.logic
+
+import org.bytebloom.dataHolder.Priority
+import org.bytebloom.dataHolder.packageRow
 
 private fun getPriorityValue(priority: Priority): Int {
     return when (priority) {

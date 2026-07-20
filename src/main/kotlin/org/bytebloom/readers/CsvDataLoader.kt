@@ -1,5 +1,10 @@
-package org.bytebloom
+package org.bytebloom.readers
 
+import org.bytebloom.dataHolder.Priority
+import org.bytebloom.dataHolder.packageRow
+import org.bytebloom.dataHolder.routeRow
+import org.bytebloom.dataHolder.vehicleRow
+import org.bytebloom.dataHolder.warehouseRow
 import java.io.File
 import java.io.IOException
 
