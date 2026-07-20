@@ -1,26 +1,26 @@
 package org.bytebloom
 
-data class Package(
+data class packageRow(
     val id: String,
     val weight: Double,
     val destinationHubId: String,
-    val priority: Priority
+    val priority: priorityRow
 )
 
-enum class Priority {
+enum class priorityRow {
     URGENT,
     STANDARD,
     LOW
 }
 
-data class Vehicle(
+data class vehicleRow(
     val vehicleId: String,
     val currentHubId: String,
     val maxCapacityKg: Double,
     val costPerKm: Double
 )
 
-data class Route(
+data class routeRow(
     val routeId: String,
     val originHubId: String,
     val destinationHubId: String,
@@ -28,7 +28,7 @@ data class Route(
     val typicalDelayMin: Int
 )
 
-data class Warehouse(
+data class warehouseRow(
     val id: String,
     val name: String,
     val regionalZone: String

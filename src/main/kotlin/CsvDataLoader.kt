@@ -7,19 +7,19 @@ private const val RESOURCE_PATH = "src/resources"
 
 // Packages Reader
 
-fun parsePriority(value: String): Priority {
+fun parsePriority(value: String): priorityRow {
     return when (value.trim().uppercase()) {
-        "URGENT" -> Priority.URGENT
-        "STANDARD" -> Priority.STANDARD
-        "LOW" -> Priority.LOW
+        "URGENT" -> priorityRow.URGENT
+        "STANDARD" -> priorityRow.STANDARD
+        "LOW" -> priorityRow.LOW
         else -> {
             println("Warning: Unknown priority '$value'. Using LOW as default.")
-            Priority.LOW
+            priorityRow.LOW
         }
     }
 }
 
-private fun parsePackage(line: String, lineNumber: Int): Package? {
+private fun parsePackage(line: String, lineNumber: Int): packageRow? {
     val columns = line.split(",").map(String::trim)
 
     if (columns.size != 4) {
@@ -53,7 +53,7 @@ private fun parsePackage(line: String, lineNumber: Int): Package? {
         return null
     }
 
-    return Package(
+    return packageRow(
         id = id,
         weight = weight,
         destinationHubId = destinationHubId,
@@ -61,8 +61,8 @@ private fun parsePackage(line: String, lineNumber: Int): Package? {
     )
 }
 
-fun readPackages(fileName: String): List<Package> {
-    val packages = mutableListOf<Package>()
+fun readPackages(fileName: String): List<packageRow> {
+    val packages = mutableListOf<packageRow>()
 
     readCsvFile(fileName) { line, lineNumber ->
         parsePackage(line, lineNumber)?.let(packages::add)
@@ -74,7 +74,7 @@ fun readPackages(fileName: String): List<Package> {
 
 // Vehicles Reader
 
-private fun parseVehicle(line: String, lineNumber: Int): Vehicle? {
+private fun parseVehicle(line: String, lineNumber: Int): vehicleRow? {
     val columns = line.split(",").map(String::trim)
 
     if (columns.size != 4) {
@@ -118,7 +118,7 @@ private fun parseVehicle(line: String, lineNumber: Int): Vehicle? {
         return null
     }
 
-    return Vehicle(
+    return vehicleRow(
         vehicleId = vehicleId,
         currentHubId = currentHubId,
         maxCapacityKg = maxCapacityKg,
@@ -126,8 +126,8 @@ private fun parseVehicle(line: String, lineNumber: Int): Vehicle? {
     )
 }
 
-fun readVehicles(fileName: String): List<Vehicle> {
-    val vehicles = mutableListOf<Vehicle>()
+fun readVehicles(fileName: String): List<vehicleRow> {
+    val vehicles = mutableListOf<vehicleRow>()
 
     readCsvFile(fileName) { line, lineNumber ->
         parseVehicle(line, lineNumber)?.let(vehicles::add)
@@ -139,7 +139,7 @@ fun readVehicles(fileName: String): List<Vehicle> {
 
 // Routes Reader
 
-private fun parseRoute(line: String, lineNumber: Int): Route? {
+private fun parseRoute(line: String, lineNumber: Int): routeRow? {
     val columns = line.split(",").map(String::trim)
 
     if (columns.size != 5) {
@@ -188,7 +188,7 @@ private fun parseRoute(line: String, lineNumber: Int): Route? {
         return null
     }
 
-    return Route(
+    return routeRow(
         routeId = routeId,
         originHubId = originHubId,
         destinationHubId = destinationHubId,
@@ -197,8 +197,8 @@ private fun parseRoute(line: String, lineNumber: Int): Route? {
     )
 }
 
-fun readRoutes(fileName: String): List<Route> {
-    val routes = mutableListOf<Route>()
+fun readRoutes(fileName: String): List<routeRow> {
+    val routes = mutableListOf<routeRow>()
 
     readCsvFile(fileName) { line, lineNumber ->
         parseRoute(line, lineNumber)?.let(routes::add)
@@ -210,7 +210,7 @@ fun readRoutes(fileName: String): List<Route> {
 
 // Warehouses Reader
 
-private fun parseWarehouse(line: String, lineNumber: Int): Warehouse? {
+private fun parseWarehouse(line: String, lineNumber: Int): warehouseRow? {
     val columns = line.split(",").map(String::trim)
 
     if (columns.size != 3) {
@@ -233,15 +233,15 @@ private fun parseWarehouse(line: String, lineNumber: Int): Warehouse? {
         return null
     }
 
-    return Warehouse(
+    return warehouseRow(
         id = id,
         name = name,
         regionalZone = regionalZone
     )
 }
 
-fun readWarehouses(fileName: String): List<Warehouse> {
-    val warehouses = mutableListOf<Warehouse>()
+fun readWarehouses(fileName: String): List<warehouseRow> {
+    val warehouses = mutableListOf<warehouseRow>()
 
     readCsvFile(fileName) { line, lineNumber ->
         parseWarehouse(line, lineNumber)?.let(warehouses::add)
