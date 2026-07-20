@@ -1,0 +1,56 @@
+package org.bytebloom
+
+private fun getPriorityValue(priority: Priority): Int {
+    return when (priority) {
+        Priority.URGENT -> 3
+        Priority.STANDARD -> 2
+        Priority.LOW -> 1
+    }
+}
+
+private fun hasHigherPriority(first: packageRow, second: packageRow): Boolean {
+    return getPriorityValue(first.priority) > getPriorityValue(second.priority)
+}
+
+private fun hasGreaterWeight(first: packageRow, second: packageRow): Boolean {
+    return first.weight > second.weight
+}
+
+private fun shouldComeBefore(first: packageRow, second: packageRow): Boolean {
+    if (first.priority != second.priority) {
+        return hasHigherPriority(first, second)
+    }
+
+    return hasGreaterWeight(first, second)
+}
+
+fun selectionSortPackagesByPriorityAndWeight(packages: MutableList<packageRow>) {
+    for (i in 0 until packages.size - 1) {
+        var bestPackageIndex = i
+
+        for (j in i + 1 until packages.size) {
+            if (shouldComeBefore(packages[j], packages[bestPackageIndex])) {
+                bestPackageIndex = j
+            }
+        }
+
+        if (bestPackageIndex != i) {
+            val tempPackage = packages[i]
+            packages[i] = packages[bestPackageIndex]
+            packages[bestPackageIndex] = tempPackage
+        }
+    }
+}
+
+fun printTopPackages(packages: List<packageRow>, count: Int) {
+    println("\nTop Priority Packages:\n")
+
+    packages.take(count).forEachIndexed { index, packageItem ->
+        println("${index + 1}.")
+        println("ID: ${packageItem.id}")
+        println("Weight: ${packageItem.weight}")
+        println("Priority: ${packageItem.priority}")
+        println("Destination: ${packageItem.destinationHubId}")
+        println()
+    }
+}
