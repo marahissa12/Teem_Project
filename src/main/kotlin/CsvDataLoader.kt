@@ -7,14 +7,14 @@ private const val RESOURCE_PATH = "src/resources"
 
 // Packages Reader
 
-fun parsePriority(value: String): priorityRow {
+fun parsePriority(value: String): Priority {
     return when (value.trim().uppercase()) {
-        "URGENT" -> priorityRow.URGENT
-        "STANDARD" -> priorityRow.STANDARD
-        "LOW" -> priorityRow.LOW
+        "URGENT" -> Priority.URGENT
+        "STANDARD" -> Priority.STANDARD
+        "LOW" -> Priority.LOW
         else -> {
             println("Warning: Unknown priority '$value'. Using LOW as default.")
-            priorityRow.LOW
+            Priority.LOW
         }
     }
 }

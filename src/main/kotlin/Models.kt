@@ -4,10 +4,10 @@ data class packageRow(
     val id: String,
     val weight: Double,
     val destinationHubId: String,
-    val priority: priorityRow
+    val priority: Priority
 )
 
-enum class priorityRow {
+enum class Priority {
     URGENT,
     STANDARD,
     LOW
