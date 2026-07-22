@@ -1,7 +1,7 @@
 package org.bytebloom.logic
 
 import org.bytebloom.dataHolder.Priority
-import org.bytebloom.dataHolder.packageRow
+import org.bytebloom.dataHolder.packageRaw
 
 private fun getPriorityValue(priority: Priority): Int {
     return when (priority) {
@@ -11,15 +11,15 @@ private fun getPriorityValue(priority: Priority): Int {
     }
 }
 
-private fun hasHigherPriority(first: packageRow, second: packageRow): Boolean {
+private fun hasHigherPriority(first: packageRaw, second: packageRaw): Boolean {
     return getPriorityValue(first.priority) > getPriorityValue(second.priority)
 }
 
-private fun hasGreaterWeight(first: packageRow, second: packageRow): Boolean {
+private fun hasGreaterWeight(first: packageRaw, second: packageRaw): Boolean {
     return first.weight > second.weight
 }
 
-private fun shouldComeBefore(first: packageRow, second: packageRow): Boolean {
+private fun shouldComeBefore(first: packageRaw, second: packageRaw): Boolean {
     if (first.priority != second.priority) {
         return hasHigherPriority(first, second)
     }
@@ -27,7 +27,7 @@ private fun shouldComeBefore(first: packageRow, second: packageRow): Boolean {
     return hasGreaterWeight(first, second)
 }
 
-fun selectionSortPackagesByPriorityAndWeight(packages: MutableList<packageRow>) {
+fun selectionSortPackagesByPriorityAndWeight(packages: MutableList<packageRaw>) {
     for (i in 0 until packages.size - 1) {
         var bestPackageIndex = i
 
@@ -45,7 +45,7 @@ fun selectionSortPackagesByPriorityAndWeight(packages: MutableList<packageRow>) 
     }
 }
 
-fun printTopPackages(packages: List<packageRow>, count: Int) {
+fun printTopPackages(packages: List<packageRaw>, count: Int) {
     println("\nTop Priority Packages:\n")
 
     packages.take(count).forEachIndexed { index, packageItem ->
